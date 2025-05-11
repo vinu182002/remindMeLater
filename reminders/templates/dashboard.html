@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Remind Me Later</title>
+  <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+      .container {
+        background-color: white;
+        padding: 30px 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 400px;
+        box-sizing: border-box;
+      }
+      
+      h1 {
+        text-align: center;
+        color: #00796b;
+        margin-bottom: 25px;
+      }
+      
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      label {
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #333;
+      }
+      
+      input[type="date"],
+      input[type="time"],
+      textarea,
+      select {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: border 0.3s ease;
+      }
+      
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: #00796b;
+        outline: none;
+      }
+      
+      button {
+        padding: 12px;
+        background-color: #00796b;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      button:hover {
+        background-color: #004d40;
+      }
+      
+      #response {
+        margin-top: 20px;
+        text-align: center;
+        font-weight: 600;
+        color: #d32f2f;
+      }
+      
+  </style>
+  {% comment %} <link rel="stylesheet" href="style.css" /> {% endcomment %}
+</head>
+<body>
+  <div style="text-align: right; margin: 10px; position: absolute;right: 0;top: 0;">
+    <a href="/logout/" style="color: #d32f2f; text-decoration: none; font-weight: bold;">Logout</a>
+  </div>
+  <div class="container">
+    <h1>Set a Reminder</h1>
+    <form id="reminder-form">
+      {% csrf_token %}
+      <label for="date">📅 Date:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="time">⏰ Time:</label>
+      <input type="time" id="time" name="time" required>
+
+      <label for="message">📝 Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+
+      <label for="method">🔔 Reminder Method:</label>
+      <select id="method" name="method" required>
+        <option value="sms">SMS</option>
+        <option value="email">Email</option>
+      </select>
+
+      <button type="submit">Create Reminder</button>
+    </form>
+    <p id="response"></p>
+  </div>
+
+  <script>
+    document.getElementById('reminder-form').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrfToken = getCookie('csrftoken');
+      //const csrfToken = "{{ csrf_token }}";
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const message = document.getElementById('message').value;
+      const method = document.getElementById('method').value;
+
+      const response = await fetch('/api/reminders/create/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken
+        },
+        body: JSON.stringify({ date, time, message, method })
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        document.getElementById('response').textContent = result.message;
+        document.getElementById('reminder-form').reset();
+      } else {
+        document.getElementById('response').textContent = 'Error: ' + JSON.stringify(result);
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+  <title>Remind Me Later</title>
+  <style>
+    /* Reset some basic elements */
+body, h1, form, p {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Page background and layout */
+body {
+  background: linear-gradient(to right, #74ebd5, #acb6e5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+/* Form container */
+form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Labels */
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+/* Inputs, textarea, select */
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  transition: border 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #5a9ff5;
+  outline: none;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #5a9ff5;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #3c84e3;
+}
+
+/* Response message */
+#response {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+}
+
+  </style>
+</head>
+<body>
+  <h1>Set a Reminder</h1>
+  <form id="reminder-form">
+    <label for="date">Date:</label><br>
+    <input type="date" id="date" name="date" required><br><br>
+
+    <label for="time">Time:</label><br>
+    <input type="time" id="time" name="time" required><br><br>
+
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="4" cols="30" required></textarea><br><br>
+
+    <label for="method">Reminder Method:</label><br>
+    <select id="method" name="method" required>
+      <option value="sms">SMS</option>
+      <option value="email">Email</option>
+    </select><br><br>
+
+    <button type="submit">Create Reminder</button>
+  </form>
+
+  <p id="response"></p>
+
+  <script>
+    document.getElementById('reminder-form').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const message = document.getElementById('message').value;
+      const method = document.getElementById('method').value;
+
+      const response = await fetch('/api/reminders/create/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ date, time, message, method })
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        document.getElementById('response').textContent = result.message;
+        document.getElementById('reminder-form').reset();
+      } else {
+        document.getElementById('response').textContent = 'Error: ' + JSON.stringify(result);
+      }
+    });
+  </script>
+</body>
+</html> {% endcomment %}
