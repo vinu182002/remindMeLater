@@ -47,16 +47,16 @@ http://127.0.0.1:8000/ – Main site
 http://127.0.0.1:8000/admin/ – Admin panel
 
 🔑 Admin Panel Access
-To access the Django admin panel:
+Visit the live admin panel:
+👉 https://talugulavinaykumar.pythonanywhere.com/admin/
 
-Navigate to the following URL:
-https://talugulavinaykumar.pythonanywhere.com/admin/
+Use the following credentials (or your own created superuser):
 
-Use the credentials you created using createsuperuser during setup.
+Username: vinay
 
-ℹ️ You can also access the admin panel locally by going to http://127.0.0.1:8000/admin/ instead of .../login/.
+Password: 123456789
 
-📁 Project Structure
+
 
 remindMeLater/
 ├── remindMeLater/        # Django project settings
@@ -64,7 +64,7 @@ remindMeLater/
 │   └── urls.py
 ├── reminders/            # App for reminder management
 │   ├── models.py
-│   ├── views.py
+│   ├── views.pyhttps://talugulavinaykumar.pythonanywhere.com/
 │   └── serializers.py
 ├── manage.py
 └── static/               # Collected static files
