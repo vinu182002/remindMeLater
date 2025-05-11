@@ -1,0 +1,70 @@
+RemindMeLater
+RemindMeLater is a Django-based web application that allows users to set and manage reminders efficiently. It supports full CRUD operations through a RESTful API and includes an admin interface for managing users and reminders.
+
+🔗 Live Demo
+🌐 Project Demo: https://talugulavinaykumar.pythonanywhere.com/
+💻 GitHub Repository: https://github.com/vinu182002/remindMeLater
+
+✅ Features
+Add, edit, and delete reminders.
+
+View reminders via API endpoints.
+
+Django admin panel for easy backend management.
+
+Clean and minimal RESTful structure using Django REST Framework.
+
+🛠 Technologies Used
+Python 3
+
+Django
+
+Django REST Framework
+
+SQLite3 (default DB)
+
+🚀 How to Run Locally
+1. Clone the Repository
+
+git clone https://github.com/vinu182002/remindMeLater.git
+cd remindMeLater
+
+2. Install Dependencies
+
+pip install -r requirements.txt
+3. Run Migrations
+
+python manage.py migrate
+4. Create Superuser (for admin access)
+
+python manage.py createsuperuser
+5. Run the Development Server
+
+python manage.py runserver
+
+Visit:
+http://127.0.0.1:8000/ – Main site
+http://127.0.0.1:8000/admin/ – Admin panel
+
+🔑 Admin Panel Access
+To access the Django admin panel:
+
+Navigate to the following URL:
+https://talugulavinaykumar.pythonanywhere.com/admin/
+
+Use the credentials you created using createsuperuser during setup.
+
+ℹ️ You can also access the admin panel locally by going to http://127.0.0.1:8000/admin/ instead of .../login/.
+
+📁 Project Structure
+
+remindMeLater/
+├── remindMeLater/        # Django project settings
+│   ├── settings.py
+│   └── urls.py
+├── reminders/            # App for reminder management
+│   ├── models.py
+│   ├── views.py
+│   └── serializers.py
+├── manage.py
+└── static/               # Collected static files
