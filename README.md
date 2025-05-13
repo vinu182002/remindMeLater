@@ -29,18 +29,7 @@ SQLite3 (default DB)
 git clone https://github.com/vinu182002/remindMeLater.git
 cd remindMeLater
 
-2. Install Dependencies
 
-pip install -r requirements.txt
-3. Run Migrations
-
-python manage.py migrate
-4. Create Superuser (for admin access)
-
-python manage.py createsuperuser
-5. Run the Development Server
-
-python manage.py runserver
 
 Visit:
 http://127.0.0.1:8000/ – Main site
