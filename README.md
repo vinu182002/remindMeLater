@@ -1,49 +1,37 @@
-RemindMeLater
-RemindMeLater is a Django-based web application that allows users to set and manage reminders efficiently. It supports full CRUD operations through a RESTful API and includes an admin interface for managing users and reminders.
+# RemindMeLater
 
-🔗 Live Demo
-🌐 Project Demo: https://talugulavinaykumar.pythonanywhere.com/
-💻 GitHub Repository: https://github.com/vinu182002/remindMeLater
+RemindMeLater is a Django-based web application that allows users to set reminders efficiently.
 
-✅ Features
-Add, edit, and delete reminders.
+🔗 **Live Demo**
+🌐 Project Demo: [RemindMeLater Live Demo](https://talugulavinaykumar.pythonanywhere.com/)
+💻 GitHub Repository: [RemindMeLater GitHub Repository](https://github.com/vinu182002/remindMeLater)
 
-View reminders via API endpoints.
+✅ **Features**
 
-Django admin panel for easy backend management.
+1. Users can log in and signup (used Django in-built authentication).
+2. Registered users can set reminders by giving date, time, message, and mode (Email or SMS).
+3. Admin can see all the reminders of users and can edit or delete them.
 
-Clean and minimal RESTful structure using Django REST Framework.
+🛠 **Technologies Used**
 
-🛠 Technologies Used
-Python 3
+- Python 3
+- Django
+- Django REST Framework
+- SQLite3 (default DB)
 
-Django
+🚀 **How to Run Locally**
 
-Django REST Framework
-
-SQLite3 (default DB)
-
-🚀 How to Run Locally
-1. Clone the Repository
-
+Clone the Repository:
+```sh
 git clone https://github.com/vinu182002/remindMeLater.git
-cd remindMeLater
+```
 
+## 🔑 Admin Panel Access
 
+Visit the live admin panel:  
+👉 [RemindMeLater Admin Panel](https://talugulavinaykumar.pythonanywhere.com/admin/)
 
-Visit:
-http://127.0.0.1:8000/ – Main site
-http://127.0.0.1:8000/admin/ – Admin panel
+Use the following Admin credentials (or your own created superuser):
 
-🔑 Admin Panel Access
-Visit the live admin panel:
-👉 https://talugulavinaykumar.pythonanywhere.com/admin/
-
-Use the following credentials (or your own created superuser):
-
-Username: vinay
-
-Password: 123456789
-
-
-
+- **Username:** `vinay`  
+- **Password:** `123456789`
