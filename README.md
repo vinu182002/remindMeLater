@@ -58,13 +58,3 @@ Password: 123456789
 
 
 
-remindMeLater/
-├── remindMeLater/        # Django project settings
-│   ├── settings.py
-│   └── urls.py
-├── reminders/            # App for reminder management
-│   ├── models.py
-│   ├── views.pyhttps://talugulavinaykumar.pythonanywhere.com/
-│   └── serializers.py
-├── manage.py
-└── static/               # Collected static files
